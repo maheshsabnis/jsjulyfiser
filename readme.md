@@ -40,7 +40,36 @@ JavaSCript App development
 ===========================================================================
 
 JavaScript Objects
-
+1. variable declarations
+   1. This is declarated using the 'var' keyword
+   2. Note: The variable declaraed using var is 'always function scoped' variable.
+2. Type System
+   1. array declaration using []
+   2. string declarations using '' or ""
+   3. Date
+3. Objects
+   1. Object
+   2. Literal aka JSON Object
+   3. Function (Heart of JavaScript)
+   4. String
+   5. Array
+   6. Date
+   7. Event
+      1. All events must be subscribed by using the function
+         1. e.g. <object>.<event> = function(){....}
+4. Operators
+5. Loops
+6. Conditions
+7. Window Object
+   1. The Browser
+8. Document Object
+   1. The DOM loaded in side the browser
+   2. Methods from Window Object
+      1. getElementById() returns a single DOM element
+      2. getElementsByName() return an array of DOM elements having same value for the 'name' attribute
+      3. getElementsByTagName(), returns an array of DOM elements having same tag
+      4. addEventListener() a method to subscribe to a DOM element
+      5. 
 
 
 

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // this is an entry point for the JS on the page to execute
+        window.onload = function() {
+            console.log('The Window Load event is fired');
+            // accessing static the DOM elenent in JS
+            var btnClickMe = document.getElementById('btnClickMe');
+            // add an event for the DOM element
+            // param1 : is the name of the event for the element
+            // param2 : is the callback* function that will be invoked
+            // when an event is raised
+            // The code inside the callback function will always 
+            // be scopped to the DOM element for which the 
+            // event is subscribed with the callback
+            // this means that all properties and events of the DOM
+            // elements will be accessed using 'this' object
+            // btnClickMe.addEventListener('click', function() {
+            //     console.log('The Button is clicked....' + this.value);
+            //     // the attaributes of HTML elements when changed
+            //     // using JSOM, then they are known as aka called as
+            //     // JavaScript 'Property System'
+            //     this.value = 'Clicked Button';
+            // }, false);
+
+            btnClickMe.addEventListener('click', btnClick, false);
+
+            function btnClick() {
+                console.log('The New Button is clicked....' + this.value);
+                this.value = 'Clicked New Button';
+            }
+
+            var btnClickMeNew = document.getElementById('btnClickMeNew');
+            btnClickMeNew.addEventListener('click', btnClick, false);
+
+            // array of all DOM elements havinf name attribute as 'btn' 
+            var buttons = document.getElementsByName('btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener('click', function() {
+                    console.log('Button clicked ' + this.value);
+                }, false);
+            }
+
+            var txtData = document.getElementById('txtData');
+            // blur --> Lost Focus --> Press TAB
+            // change --> Entering data in input Text element
+            // keyup --> Defult Event
+            // txtData.addEventListener('keyup', function() {
+            //     console.log('Value Entered =  ' + this.value);
+            // }, false);
+
+            txtData.addEventListener('change', function() {
+                console.log('Value Entered =  ' + this.value);
+            }, false);
+            var btnSet = document.getElementById('btnSet');
+            btnSet.addEventListener('click', function() {
+                txtData.value = 'Mahesh';
+            }, false);
+
+            var btnGet = document.getElementById('btnGet');
+            btnGet.addEventListener('click', function() {
+                console.log('Value in Text Box =' + txtData.value);
+            }, false);
+
+
+            var btnOp = document.getElementById('btnOp');
+            btnOp.addEventListener('click', function() {
+                console.log(2 + 2);
+                console.log(2 - 2);
+                console.log(2 * 2);
+                console.log(3 / 2);
+
+
+                var n1 = parseInt(document.getElementById('n1').value);
+                var n2 = parseInt(document.getElementById('n2').value);
+
+                var res = n1 + n2;
+                console.log(res)
+
+            }, false);
+
+
+
+            // var buttonsTags = document.getElementsByTagName('input');
+            // for (var i = 0; i < buttons.length; i++) {
+            //     buttons[i].addEventListener('click', function() {
+            //         console.log('Button clicked ' + this.value);
+            //     }, false);
+            // }
+        };
+    </script>
+</head>
+
+<body>
+    <h1>The Window Object</h1>
+    <!--Static DOM-->
+    <!--The 'id' attribute is unique to the Static DOM
+     this is used for definig the DOM event on it-->
+    <input type="button" value="Click Me1111" id="btnClickMe">
+    <br>
+    <input type="button" value="Click Me New" id="btnClickMeNew">
+    <br>
+    <!--The 'name' attribute will be used to define Group of DOM elements-->
+    <input type="button" name="btn" value="1" id="btn1">
+    <br>
+    <input type="button" name="btn" value="2" id="btn2">
+    <br>
+    <input type="button" name="btn" value="3" id="btn3">
+    <br>
+    <input type="text" id="txtData">
+    <input type="button" value="Set Value" id="btnSet">
+    <input type="button" value="Get Value" id="btnGet">
+    <br>
+    <input type="button" value="Operations" id="btnOp">
+    <hr>
+    <input type="text" id="n1">
+    <input type="text" id="n2">
+
+
+</body>
+
+</html>
