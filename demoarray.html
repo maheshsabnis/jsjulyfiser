@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./demoarray.js"></script>
+    <script>
+        window.onload = function() {
+            var lstNames = document.getElementById('lstNames');
+            var options = '';
+            for (var i = 0; i < arrString.length; i++) {
+                options += '<option value=' + arrString[i] + '>' + arrString[i] + '</option>';
+            }
+            // assign the options data to the lstNames
+            // using 'innerHTML' property we can dynamicaaly add HTML DOM to the element
+            lstNames.innerHTML = options;
+
+            // writing the change event of the 'select'
+            lstNames.addEventListener('change', function() {
+                alert('Selected value = ' + this.options[this.selectedIndex].value);
+            }, false);
+
+            // calling the function
+            gnerateTable(arrEmps);
+
+            // a function to generate table
+            function gnerateTable(arrEmps) {
+                var tr = '';
+                for (var i = 0; i < arrEmps.length; i++) {
+                    tr += '<tr><td>' + arrEmps[i].EmpNo + '</td><td>' + arrEmps[i].EmpName + '</td><td>' + arrEmps[i].Salary + '</td></tr>';
+                }
+                document.getElementById('tbody').innerHTML = tr;
+            }
+
+            document.getElementById('btnAddEmp').addEventListener('click', function() {
+                arrEmps.push({
+                    EmpNo: 5,
+                    EmpName: 'Prashant',
+                    Salary: 4555
+                });
+                console.log(JSON.stringify(arrEmps));
+                gnerateTable(arrEmps);
+
+            }, false);
+        }
+    </script>
+</head>
+
+<body>
+    <select id="lstNames"></select>
+    <hr>
+    <input type="button" value="Add Emp" id="btnAddEmp">
+    <br>
+    <table border="double">
+        <thead>
+            <tr>
+                <th>EmpNo</th>
+                <th>EmpName</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody id='tbody'></tbody>
+    </table>
+</body>
+
+</html>
