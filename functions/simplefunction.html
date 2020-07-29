@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./simplefunction.js"></script>
+    <script>
+        window.onload = function() {
+
+            document.getElementById('btnChangeCase')
+                .addEventListener('click', function() {
+                    var val = document.getElementById('txtString').value;
+                    document.getElementById('dvUtext').innerHTML = stringOprations(val, 'U');
+                    document.getElementById('dvLtext').innerHTML = stringOprations(val, 'L');
+                }, false);
+        };
+    </script>
+</head>
+
+<body>
+    <input type="text" id="txtString">
+    <br>
+    <input type="button" value="ChangeCase" id="btnChangeCase">
+    <hr>
+    <div id="dvUtext"></div>
+    <hr>
+    <div id="dvLtext"></div>
+</body>
+
+</html>

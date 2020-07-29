@@ -1,30 +1,21 @@
 Rendering ?
-- Dynmaic generation of UI ?
-	- JSP/ Spting Boot
-	- ASP.NET /MVC
-	- PHP
-- Static UI (HTML/Server-Side Controls)
-	Generate HTML Stream + Provides JavaScript to Manipulate the Generated HTML
 
+- Dynmaic generation of UI ? - JSP/ Spting Boot - ASP.NET /MVC - PHP
+- Static UI (HTML/Server-Side Controls)
+  Generate HTML Stream + Provides JavaScript to Manipulate the Generated HTML
 
 =================================================================
-JavaScript
-	- Libraries
-		- Single Reposnsibility principal based JS object model. e.g. jQuery, Knockoutjs, React.js, D3.js, bootsratp css 
-	- Frameworks
-		- E2E support for Front-End in browser
-			- UI, AJAX, Data, 
-			- Angular, Extjs, Ember, Vue, etc
+JavaScript - Libraries - Single Reposnsibility principal based JS object model. e.g. jQuery, Knockoutjs, React.js, D3.js, bootsratp css - Frameworks - E2E support for Front-End in browser - UI, AJAX, Data, - Angular, Extjs, Ember, Vue, etc
 
 Ext.js + JavaScript (Front-End)
 Express.js (Middleware for REST API) on Node.js
 Node.js Runtime to execute JavaScript on Server
 MongoDb (JSON Document based NoSQL Database)
 
-MEAN / EEAN
-======================================================================
+# MEAN / EEAN
 
 JavaSCript App development
+
 1. IDE
    1. Visual Studio Code (VSCode)
       1. https://code.visualstudio.com
@@ -36,10 +27,10 @@ JavaSCript App development
    1. Used for execting JavaScript in Browser
    2. e.g. Live Server in VS Code
 3. Node.js
-   1. Used to Execute JavaScript out of Browser
-===========================================================================
+   1. # Used to Execute JavaScript out of Browser
 
 JavaScript Objects
+
 1. variable declarations
    1. This is declarated using the 'var' keyword
    2. Note: The variable declaraed using var is 'always function scoped' variable.
@@ -53,6 +44,8 @@ JavaScript Objects
    3. Function (Heart of JavaScript)
    4. String
    5. Array
+      1. arguments array
+         1. Default array used for variable number of parameters
    6. Date
    7. Event
       1. All events must be subscribed by using the function
@@ -64,16 +57,11 @@ JavaScript Objects
    1. The Browser
 8. Document Object
    1. The DOM loaded in side the browser
-   2. Methods from Window Object
-      1. getElementById() returns a single DOM element
-      2. getElementsByName() return an array of DOM elements having same value for the 'name' attribute
-      3. getElementsByTagName(), returns an array of DOM elements having same tag
-      4. addEventListener() a method to subscribe to a DOM element
-      5. 
-=======================================================================================
-Day 2
+   2. # Methods from Window Object 1. getElementById() returns a single DOM element 2. getElementsByName() return an array of DOM elements having same value for the 'name' attribute 3. getElementsByTagName(), returns an array of DOM elements having same tag 4. addEventListener() a method to subscribe to a DOM element 5.
+      Day 2
 
 JavaScript Collection Objects (ECMA Collection Objects)
+
 - Array
   - Collection Foundation for storing Data in Browser
   - By Default is an Object
@@ -84,7 +72,7 @@ JavaScript Collection Objects (ECMA Collection Objects)
     - a special parser to parse strings having
       - Only Characters
       - String starts with numeric values
-    - String with escape sequence embedding 
+    - String with escape sequence embedding
 - Exercise 2: Generate table from Array of JSON ojects w/o hard-coing properties of Objects in HTML table headers and rows (Immediately)
 - Exercise 3: Create a HTML Page that will show string in <div> tag.
 - E.g. JavaScript is a Fornt-End Browser programming language. this is compotible to all browsers. This provides objects, methods, types to write loginc to manipulate HTML. this is a great technology.
@@ -93,24 +81,50 @@ JavaScript Collection Objects (ECMA Collection Objects)
   - Button to print number of blank spaces in the string. (immediately)
   - Button to print number of words in string (immediately)
   - Button to convert the first character of each word in upper case.
-- Add text box and enter a charcter/word in it. Once the 'blur' event of the textbox is raised print the frequency of that character / word in the string.  
+- Add text box and enter a charcter/word in it. Once the 'blur' event of the textbox is raised print the frequency of that character / word in the string.
 
+==========================================================================================================================================
+JavaScript Functions
 
+1. JavaScript Function Types
 
+   1. Reference Functions
+      1. Function reference will be stored in a variable. This variable will act as function object.
+      2. This function will not have 'name'.
+      3. e.g.
+         1. var fn = function(){......}
+         2. The function body will contain functions in it
+            1. All functions prefixed with 'this.' will be publically accessible functions otherwise these functions will br private to the function object.
+      4. The reference functions can be 'prototyped' for adding extended functionalities
+   2. Named Functions those return an Object-Literal
+      1. e.g {}
+      2. The Object-Literal containts Key:Value pair for publically exposed functions and properties
+      3. e.g.
+         1. function XYZ (args) {return {KEY1:VALUE2,,,,,}}
+   3. Immediately Invoked Function Expression (IIFE)
+      1. The JavaScript Function that will be invoked imediately when it declared or defined.
+      2. syntax
+         1. (function(){......})();
 
+2. Used to define a module (?) with
+   1. Presenter logic
+      1. Static UI Models
+      2. Subscribe with Events for UI Elements
+      3. Manipulated UI Property System
+   2. Business Logic
+      1. Custom Domain Validations
+      2. UI side Calculations based on Domain
+   3. Utilities
+3. Functions w/o return values
+4. Function with return statement
+5. JavaScript Module means
+   1. Contains Fucntion(s) with Private and Public funcionalities in it
+   2. Conatains Function(s) with prototypes for extended functionalities
 
+Ex 4: Create a ProductLogic Function that will perform CRUD Operations on Products Array with following Product Properties (Immediately)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- ProductRowId, ProductId, ProductName, CategoryName, Manufacturer, Description, BasePrice (Immediately)
+- Create a HTML UI, that will have text elements for ProductRowId, ProductId, ProductName, BasePrice and Description. The CategoryName and Manufacturer will be <select> element which will be dynamically filled using Categories and Manufacturers arrays from the ProductLogic function. (Immediately)
+- The HTML will have UI with buttons to perfrom Create, Update operations (Immediately)
+- The HTML Table will list all Products. The HTML table shoud have Delete button for each row to delete the selected product record. (Friday)
+- Add radio buttons above HTML table to Sort/reverse the Products data based on productname and manufacturers (Friday)

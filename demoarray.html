@@ -22,11 +22,32 @@
                 alert('Selected value = ' + this.options[this.selectedIndex].value);
             }, false);
 
+
+
+            function generateHeaders(arrEmps) {
+                var headers = [];
+                for (var p in arrEmps[0]) {
+                    headers.push(p);
+                }
+
+                return headers;
+            }
+
             // calling the function
             gnerateTable(arrEmps);
 
             // a function to generate table
             function gnerateTable(arrEmps) {
+                var headersData = generateHeaders(arrEmps);
+                alert(headersData);
+                var trh = '<tr>';
+                for (var h in headersData) {
+                    trh += '<th>' + headersData[h] + "</th>";
+                }
+
+                trh += "</tr>";
+                document.getElementById('thead').innerHTML = trh;
+
                 var tr = '';
                 for (var i = 0; i < arrEmps.length; i++) {
                     tr += '<tr><td>' + arrEmps[i].EmpNo + '</td><td>' + arrEmps[i].EmpName + '</td><td>' + arrEmps[i].Salary + '</td></tr>';
@@ -54,12 +75,12 @@
     <input type="button" value="Add Emp" id="btnAddEmp">
     <br>
     <table border="double">
-        <thead>
-            <tr>
+        <thead id="thead">
+            <!-- <tr>
                 <th>EmpNo</th>
                 <th>EmpName</th>
                 <th>Salary</th>
-            </tr>
+            </tr> -->
         </thead>
         <tbody id='tbody'></tbody>
     </table>
