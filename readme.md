@@ -128,3 +128,70 @@ Ex 4: Create a ProductLogic Function that will perform CRUD Operations on Produc
 - The HTML will have UI with buttons to perfrom Create, Update operations (Immediately)
 - The HTML Table will list all Products. The HTML table shoud have Delete button for each row to delete the selected product record. (Friday)
 - Add radio buttons above HTML table to Sort/reverse the Products data based on productname and manufacturers (Friday)
+
+#####################################################################################
+Day 4.
+
+1. HTML 5 Programming (?)
+   1. The HTML UI + Inline JavaScript + Inline CSS3
+   2. UI
+      1. Date Famility UI Elements
+      2. Numneric UI Elements
+      3. Text-Filter UI Element
+      4. Charts
+      5. Email
+      6. Self Validating UI Elements
+         1. <form></form>
+            1. Contains a Dictionary aka FormModel of all form elements(?)
+               1. Form Elements, they are the Editable elements inside <form> tage having 'name' attribute
+               2. When the <form>.onSubmit() takes place the disctionary withe name:value pair will be posted/submitted
+      7. Forms Elements
+         1. datalist
+            1. An attribute of Input element that is used to provide the search based filter for the input text element
+            2. The <datalist></datalist> is a HTML API Tag that overrides <select> element
+   3. APIs
+      1. Drag-Drop
+         1. Used to Dynamically update DOM based on Events
+         2. HTML 5 Drag Atributes
+            1. 'draggable', boolean , if set to true then the item will be available for dragging
+            2. Events
+               1. dragstart, start dragging the draggable DOM element
+                  1. provides the Event Arguments object with 'dataTransfer' object
+                     1. set and get the data of DOM element to be dragged and dropped
+               2. drop, completes the Drop operation on DOM element
+               3. dragover, set the DOM elements' linking with mouse movment
+      2. Resources
+         1. Files
+            1. Text, BLOB, ArrayBuffer, Xml, JSON
+               1. audio and video tags
+               2. window.files()
+               3. FileReader()
+         2. Storage
+            1. indexedDB
+            2. localStorage
+            3. sessionStorage
+         3. Threads
+            1. WebWorker
+         4. Media
+            1. Canvas
+            2. SVG
+         5. Sensors
+            1. navigator object for geolocation
+            2. Netwoking
+               1. WiFi
+            3. USB
+            4. Printer
+            5. Camera
+            6. Audio Devices
+      3. Networking
+         1. AjAX (Server-Dependent)
+         2. Socket (Server Dependnat)
+2. Asynchronous Programming
+   1. Working with AJAX Patterns
+3. Libraries and/or Frameworks
+
+Ex 5: Complete the Shopping Cart App with following UI/UX needs
+
+- Disply Price of Each item in li element
+- When the li is dragged And dropped the lstCart should show the dropped elemnts and the botton of the target div should show the total price.
+- If the li is drag-droped multiple times then the count of the li in lst cart should be increamented, the lstCart should also have facility to delete dropped items (YOU DESING UI Accordingly)

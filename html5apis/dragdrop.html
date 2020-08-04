@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag Drop App</title>
+    <style type="text/css">
+        #dvContainer {
+            display: table;
+            border: double;
+            width: 100px;
+            height: 500px;
+        }
+        
+        #dvSrc,
+        #dvCart {
+            display: table-cell;
+            border: double;
+            width: 500px;
+            height: 400px;
+        }
+        
+        #lstCart,
+        #lstItmeToPurchase {
+            width: 500px;
+        }
+    </style>
+    <script>
+        function applyDragDrop() {
+            // read the li elements
+            var litsItmes = document.getElementsByTagName('li');
+            // subscribe to the 'dragstart' event for all li elements
+            for (var i = 0; i < litsItmes.length; i++) {
+                litsItmes[i].addEventListener('dragstart', function(evt) {
+                    // use the Drag Event's object model
+                    // evt.target is the 'li' being dragged
+                    evt.dataTransfer.setData("Text", evt.target.textContent);
+                    // disable the further drogging on the elemene once it is dropped
+                    // evt.target.draggable = false;
+                }, false);
+            }
+
+            // start process for dropping
+            // read the target element
+            var dvCart = document.getElementById('dvCart');
+
+            // subscibe to the 'drop' event on the cart
+            dvCart.addEventListener('drop', function(evt) {
+                // do not execute any other event while drop is in process
+                evt.preventDefault();
+                // read the data thatis being dragged
+                var data = evt.dataTransfer.getData("Text");
+                // read the cart list
+                var lstCart = document.getElementById('lstCart');
+                // create a 'li' element dynamically 
+                var li = document.createElement('li');
+                // set the TextContent for the element
+                li.textContent = data;
+                // append 'li' in lstCart
+                lstCart.appendChild(li);
+            }, false);
+
+            // subscibe to dragover for the dvCart so that only Drop event is permitted
+            dvCart.addEventListener('dragover', function(evt) {
+                evt.preventDefault();
+            }, false);
+
+        }
+        window.onload = applyDragDrop;
+    </script>
+</head>
+
+<body>
+    <h2>HTML 5 Drag Drop</h2>
+    <div id="dvContainer">
+
+        <div id="dvSrc" style="background-color: yellow;">
+            <h2>Items to Purchase</h2>
+            <ul id="lstItmeToPurchase">
+                <li draggable="true">Laptop</li>
+                <li draggable="true">Desktop</li>
+                <li draggable="true">RAM</li>
+                <li draggable="true">Router</li>
+                <li draggable="true">Keyboard</li>
+            </ul>
+        </div>
+        <div id="dvCart" style="background-color: red;">
+            <h2>Cart</h2>
+            <ul id="lstCart"></ul>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function handleFile(inputFile) {
+
+            // debugger;
+            var fileAttributes = document.getElementById('fileAttributes');
+
+            // read file of which attributes are to be accessed
+
+            // check if the browser provides the file Access using openFileDialog
+            if (inputFile.files) {
+                // read a specific file
+                var file = inputFile.files[0];
+
+                fileAttributes.innerHTML = `
+                   name = ${file.name},
+                   type = ${file.type},
+                   size = ${(file.size / 1024).toFixed(2)} KBs
+                   last modified = ${file.lastModifiedDate}  
+                `;
+            } else {
+                // the file object is not supported
+                fileAttributes.innerHTML = 'Sorry! Files are not accessible';
+            }
+
+        }
+
+        function readFile(file) {
+            if (file.files) {
+                // accept the file
+                var imgFile = file.files[0];
+                // check if the file is of the type imegae
+                // use the HTML 5 based Regular Expressions for image file
+                var imageMimeType = /image.*/;
+
+                // read the image tage
+                var img = document.getElementById('img');
+
+                // varify the image extension
+                if (imgFile.type.match(imageMimeType)) {
+                    // use the HTML 5 file reader object
+                    var reader = new FileReader();
+                    // start reading using 'onload' event of the reader object
+                    reader.onload = (
+                        // DOM element where the image is to be displayed 
+                        function(imgToReadAndDisplay) {
+                            return function(evt) {
+                                // read the target image and assign
+                                // it to the img DOM element
+                                imgToReadAndDisplay.src = evt.target.result;
+                            }
+                        }
+                    )(img); // <--- the DOM element to show image 
+
+                    // pass the file to be read to the reader object
+                    reader.readAsDataURL(imgFile);
+                } else {
+                    alert('Sorry the selected file is not image');
+                }
+            } else {
+                alert('File object is not supported');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h2>The File Objectof HTML 5</h2>
+    <section>
+        <!--Pass the selected file to the method using onchange event-->
+        <input type="file" id="input" onchange="handleFile(this)">
+    </section>
+    <hr>
+    <section id="fileAttributes"></section>
+
+    <hr>
+
+    <section>
+        <!--Pass the selected file to the method using onchange event-->
+        <input type="file" id="input1" onchange="readFile(this)">
+    </section>
+    <hr>
+    <img id="img" style="height:100px;width:100px;">
+</body>
+
+</html>

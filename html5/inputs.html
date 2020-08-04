@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 5 Input Elements</title>
+    <script>
+        window.onload = function() {
+            document.getElementById('btn').addEventListener('click', function() {
+                var inputs = document.getElementsByClassName('c1');
+
+                for (var i = 0; i < inputs.length; i++) {
+                    document.getElementById('dv').innerHTML += inputs[i].value;
+                }
+
+
+                document.getElementById('dv').innerHTML = document.getElementById('txtstate').value;
+
+            }, false);
+
+            var stateNames = [{
+                id: 'MAH',
+                name: 'Maharashtra'
+            }, {
+                id: 'TAM',
+                name: 'Tamilnadu'
+            }, {
+                id: 'TEL',
+                name: 'Telengana'
+            }, {
+                id: 'KAR',
+                name: 'Karnataka'
+            }];
+            var opt = '';
+            for (var i = 0; i < stateNames.length; i++) {
+                opt += '<option value=' + stateNames[i].id + '>' + stateNames[i].name + '</option>'
+            }
+            document.getElementById('lstStates').innerHTML = opt;
+
+        }
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <table>
+            <tr>
+                <td>
+                    Date:
+                </td>
+                <td>
+                    <input type="date" class="c1" name="date" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Month:
+                </td>
+                <td>
+                    <input type="month" class="c1" name="month" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Week:
+                </td>
+                <td>
+                    <input type="week" class="c1" name="week" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Range:
+                </td>
+                <td>
+                    <input type="range" min="0" max="200" class="c1" name="range" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Number:
+                </td>
+                <td>
+                    <input type="number" min="0" max="200" class="c1" name="numbare" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>
+                    <input type="text" name="fullname" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    James Bond Names
+                </td>
+                <td>
+                    <input type="text" list="lstnames">
+                    <datalist id="lstnames">
+                        <option value="Sean Connary">Sean Connary</option>
+                        <option value="George Luznaby">George Luznaby</option>
+                        <option value="Roger Moore">Roger Moore</option>
+                        <option value="Trimothy Dalton">Trimothy Dalton</option>
+                        <option value="Pearce Brosnon">Pearce Brosnon</option>
+                        <option value="Daniel Craig">Daniel Craig</option>
+                    </datalist>
+                </td>
+                <td>
+                    <td>States</td>
+                    <td>
+                        <input type="text" id="txtstate" list="lstStates">
+                        <datalist id="lstStates"></datalist>
+                    </td>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>
+    <hr>
+    <input type="button" value="Get Values" id="btn">
+    <div id="dv"></div>
+</body>
+
+</html>
