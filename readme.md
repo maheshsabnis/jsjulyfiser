@@ -195,3 +195,7 @@ Ex 5: Complete the Shopping Cart App with following UI/UX needs
 - Disply Price of Each item in li element
 - When the li is dragged And dropped the lstCart should show the dropped elemnts and the botton of the target div should show the total price.
 - If the li is drag-droped multiple times then the count of the li in lst cart should be increamented, the lstCart should also have facility to delete dropped items (YOU DESING UI Accordingly)
+
+
+####################################################################################
+Ex 6: Modify the Exercise 4 of Products to perform AJAX calls to the Products REST APIs using XmlHttpRequest object

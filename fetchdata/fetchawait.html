@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function() {
+            loadData().then(function(resp) {
+                alert(JSON.stringify(resp));
+            }).catch(function(err) {
+                alert(err);
+            });
+            async function loadData() {
+                let response = await fetch("https://apiapptrainingnewapp.azurewebsites.net/api/Products");
+                if (response.ok) {
+                    // get the response body
+                    let json = await response.json();
+                    return json;
+                } else {
+                    alert("HTTP-Error: " + response.status);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>The Async</h1>
+</body>
+
+</html>

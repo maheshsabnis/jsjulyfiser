@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function() {
+            var url = 'https://apiapptrainingnewapp.azurewebsites.net/api/Products';
+
+
+            var btnGetData = document.getElementById('btnGetData');
+            btnGetData.addEventListener('click', loadData, false);
+
+            var btnGetData = document.getElementById('btnPostData');
+            btnGetData.addEventListener('click', postData, false);
+
+
+            var btnGetImage = document.getElementById('btnGetImage');
+            btnGetImage.addEventListener('click', function() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'http://localhost:8020/image/myimg.png', true);
+                // http 2.0  blob/arraybuffer
+                xhr.responseType = 'blob'; // blob/arraybuffer/json/html/xml/text
+                // uploading image
+                // multi-part post type
+
+                // formData = new FormData()
+                // formData.appaend("<MYFILE>", fileUplaodControl.files[0]);
+                // xhr.open('POST', URL of Service that accepts image);
+                // xhr.send(formData)    
+
+                xhr.onload = function(e) {
+                    if (this.status == 200) {
+                        // BlobParts, the streamed bytes received
+                        var blob = new Blob([this.response], {
+                            type: 'image/png'
+                        });
+                        // generate URL from response
+                        var urlImageCreator = window.URL || window.webkitURL;
+                        var imageUrl = urlImageCreator.createObjectURL(this.response);
+                        document.querySelector("#img1").src = imageUrl;
+
+                    }
+                }
+                xhr.send();
+
+
+            }, false);
+
+            function postData() {
+                var http = new XMLHttpRequest();
+
+                http.open('POST', url);
+
+                http.onload = function(evt) {
+                    if (this.status == 201) {
+                        var product = this.response;
+                        console.log(product);
+                    } else {
+                        console.log('Response is not success')
+                    }
+                };
+                http.onerror = function(evt) {
+                    console.log('Error Occured in AJAX call ' + evt);
+                }
+
+                var prd = {
+                    ProductId: "Prd6301",
+                    ProductName: "Water Bottles",
+                    Manufacturer: "Bajaj",
+                    CategoryName: "Household",
+                    Description: "1 lts Oxy",
+                    BasePrice: 20
+                };
+
+                // set the request header
+                // Content-Type : application/json
+                // AUTHORIZATION: '<SCHEMA> <SCHEMA-VALUE>'
+                // AUTHORIZATION: 'basic username:password'
+                // AUTHRIZATION: 'bearer <TOKEN>'    
+                http.setRequestHeader('Content-Type', 'application/json');
+                // http.setRequestHeader('AUTHORIZATION', 'basic username:password');
+                // http.setRequestHeader('AUTHORIZATION', 'bearer <TOKEN>');
+
+                http.send(JSON.stringify(prd)); // --> prd will be posted in Body
+
+
+            }
+
+
+
+            function loadData() {
+                var http = new XMLHttpRequest();
+                // define the request metadata
+                // method: GET/ POST/ PUT/ DELETE
+                // url: http/https url of the server
+                // 
+                http.open('GET', url);
+                // subscribe to the response to be received from the AJAX call
+                http.onload = function(evt) {
+                    if (this.status == 200) {
+                        var products = this.response;
+                        console.log(JSON.stringify(products));
+                    } else {
+                        console.log('Response is not success')
+                    }
+                };
+                http.onerror = function(evt) {
+                    console.log('Error Occured in AJAX call ' + evt);
+                }
+                http.send(); // start the request
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <input type="button" value="Get Data" id="btnGetData">
+    <hr>
+    <input type="button" value="Post Data" id="btnPostData">
+
+    <hr>
+    <input type="button" value="Get Image" id="btnGetImage">
+    <hr>
+    <img id="img1" style="height:100px;width:100px;">
+</body>
+
+</html>

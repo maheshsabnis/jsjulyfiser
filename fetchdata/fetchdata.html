@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function() {
+            loadData();
+
+            function loadData() {
+                fetch(
+                        "https://apiapptrainingnewapp.azurewebsites.net/api/Products"
+                    ).then(function(resp) {
+                        return resp.json();
+                    })
+                    .then(function(data) {
+                        console.log(JSON.stringify(data));
+                    }).catch(function(error) {
+                        console.log(error);
+                    });
+            }
+
+            document.getElementById('btnPost').addEventListener('click', function() {
+                var requestOptions = {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        ProductId: "Prd034",
+                        ProductName: "Tablet",
+                        Manufacturer: "HP",
+                        CategoryName: "Electronics",
+                        Description: "Kindle Edition",
+                        BasePrice: 34000
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+
+                fetch("https://apiapptrainingnewapp.azurewebsites.net/api/Products",
+                    requestOptions).then(function(resp) {
+                    return resp.json();
+                }).then(function(data) {
+                    console.log(`Received data ${JSON.stringify(data)}`);
+                }).catch(function(error) {
+                    console.log(error);
+                });
+            }, false);
+        }
+    </script>
+</head>
+
+<body>
+    <!--https://apiapptrainingnewapp.azurewebsites.net-->
+    <input type="button" value="Post Data" id="btnPost">
+
+</body>
+
+</html>

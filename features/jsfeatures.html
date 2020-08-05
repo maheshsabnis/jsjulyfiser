@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function() {
+
+            dowork(true);
+            dowork(false);
+
+            console.log('var with loop');
+            // let, keyword for declaration performs block-scope
+            // lifecycle managemenr for the variable (ES 5)
+            // transpilation --> 'let' will be transformed into 'var'
+            // `Value = ${i}` --> transformed into 'value = ' + i
+
+            for (let i = 0; i <= 2; i++) {
+                console.log(`In for loop i = ${i}`);
+            }
+
+            console.log(`Out of the for loop i = ${i}`);
+            i++;
+            console.log(`Out of the for loop with increament i = ${i}`);
+
+
+
+            function dowork(x) {
+                if (x) {
+                    let y = 10; // local variable declaration in if block
+                    console.log('standard string concatination in if condition y =' + y);
+                    // template string ES 5, 6+
+                    console.log(`Template string in if condition y = ${y}`);
+                }
+                y++;
+                console.log(`out of if condition y = ${y}`);
+            }
+        };
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
