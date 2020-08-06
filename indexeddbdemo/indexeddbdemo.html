@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // global declarations
+        var employeeDb;
+        var empTbl;
+        var transactions;
+        // create database
+        function createDatabase() {
+
+            // define events for buttons
+            var btnNew = document.getElementById('btnNew');
+            btnNew.addEventListener('click', newRecord, false);
+
+            var btnSave = document.getElementById('btnSave');
+            btnSave.addEventListener('click', saveRecord, false);
+
+            var btnDeleteDB = document.getElementById('btnDeleteDB');
+            btnDeleteDB.addEventListener('click', deletedatabase, false);
+
+
+            // create database if not already exist
+            // if exists it will be opend for operations
+
+            employeeDb = window.indexedDB.open('EmployeeDb', 1);
+
+            //  subscribe to the  onupgradeneeded event
+            // to perform ObjectStore creation operations   
+            employeeDb.onupgradeneeded = function(e) {
+                // get a reference of the indexedDB
+                var empdb = e.target.result;
+                // define a logic to create table
+                // the name of the table is Employee
+                // The JSON object that will define a keyPath aka the unique key
+                empTbl = empdb.createObjectStore("Employee", {
+                    keyPath: "id"
+                });
+
+                // define columns for the object store
+                // 3 parameters for the method
+                // p1: the columns index name
+                // p2: the dev. friendly columns name
+                // p3: the columns constraints
+
+                var columnOptions = {
+                    unique: false
+                };
+                empTbl.createIndex("EmpNo1", "EmpNo", columnOptions);
+                empTbl.createIndex("EmpName1", "EmpName", columnOptions);
+
+            };
+
+            // subscribe to the onsuccess event to make sute that
+            // indexedDB is available and it is created
+            employeeDb.onsuccess = function(evt) {
+                console.log('The datbase is created ' + evt.target.result);
+            };
+
+            loadRecords();
+        }
+
+        function deletedatabase() {
+            // delete the database0
+            var db = window.indexedDB.deleteDatabase("EmployeeDb");
+            alert('in delete');
+            db.onsuccess = function() {
+                alert("database deleted successfully....");
+            };
+        }
+
+        function newRecord() {
+            document.getElementById("eno").value = 0;
+            document.getElementById("ename").value = "";
+        }
+
+        // function to add new record in ObjectStore 
+        function saveRecord() {
+            // get the database reference
+            var empDb = window.indexedDB.open("EmployeeDb");
+            if (empDb) {
+                // subscribe to onsuccess event of the db to perform transactions
+                empDb.onsuccess = function(e) {
+                    // type of trnsaction are, read, read/write
+                    // set the transaction on the ObjectStore and get its reference
+                    var empTblTx = e.target.result.transaction("Employee", 'readwrite');
+
+                    // from the transaction ref. get the ObjectStore to perform the Add
+                    // opertaion
+                    var tbl = empTblTx.objectStore("Employee");
+                    // call the add() method on the ObjectStore 
+                    // and pass column values to it
+                    // tbl.put() to update record
+                    // tbl.delete() to delete the record
+                    var addOperation = tbl.add({
+                        "id": document.getElementById("eno").value,
+                        "EmpNo": document.getElementById("eno").value,
+                        "EmpName": document.getElementById("ename").value
+                    });
+
+                    // verify the transaction success
+                    addOperation.onsuccess = function(e) {
+                            alert("Record inserted successfully" + JSON.stringify(e));
+                        }
+                        // handle the transaction errors
+                    addOperation.onerror = function(e) {
+                        alert("Error Occured while adding record " + JSON.stringify(e));
+                    };
+                };
+
+                loadRecords();
+
+            }
+        }
+
+        // the method to query all data
+        function loadRecords() {
+
+            var employees = [];
+
+            // get the database reference
+            var empDb = window.indexedDB.open("EmployeeDb");
+            if (empDb) {
+                // subscribe to onsuccess event of the db to perform transactions
+                empDb.onsuccess = function(e) {
+                    // type of trnsaction are, read, read/write
+                    // set the transaction on the ObjectStore and get its reference
+                    var empTblTx = e.target.result.transaction("Employee", 'readonly');
+
+                    // from the transaction ref. get the ObjectStore to perform the Add
+                    // opertaion
+                    var tbl = empTblTx.objectStore("Employee");
+
+                    // use the transaction object to read all data from the 
+                    // Employee ObjectStore
+
+                    // the oncomplete is the
+                    // subscription on event that will be raised
+                    // when the 'ReadCursor' will complete the read operation
+                    empTblTx.oncomplete = function() {
+                        console.log('data from indexdb employee store ');
+                        console.log(JSON.stringify(employees));
+                    }
+
+                    // define the cursor to perform the read operations
+                    var empCursor = tbl.openCursor();
+
+                    // set the cursor on the first match record
+                    // of the objectstore
+                    empCursor.onsuccess = function(evt) {
+                        // resultset that contains the recordset
+                        // of resultant records from objectstore
+                        var reader = evt.target.result;
+                        if (reader) {
+                            employees.push(reader.value);
+                            reader.continue();
+                        }
+                    };
+
+                }
+
+            }
+        }
+
+
+
+
+        window.onload = createDatabase;
+    </script>
+</head>
+
+<body>
+    <table style="border: double;">
+        <tr>
+            <td>
+                EmpNo
+            </td>
+            <td>
+                <input type="text" id="eno" class="c1">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                EmpName
+            </td>
+            <td>
+                <input type="text" id="ename" class="c1">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="New" id="btnNew">
+            </td>
+            <td>
+                <input type="button" value="Save" id="btnSave">
+            </td>
+            <td>
+                <input type="button" value="Delete Database" id="btnDeleteDB">
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

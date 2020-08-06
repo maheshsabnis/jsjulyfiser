@@ -1,0 +1,15 @@
+{
+  "name": "jsapps",
+  "version": "1.0.0",
+  "description": "Rendering ?",
+  "main": "arramethods.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/extjs": "^4.2.33"
+  }
+}

@@ -199,3 +199,30 @@ Ex 5: Complete the Shopping Cart App with following UI/UX needs
 
 ####################################################################################
 Ex 6: Modify the Exercise 4 of Products to perform AJAX calls to the Products REST APIs using XmlHttpRequest object
+=====================================================================================
+
+Ext.js
+1. UI COmponents
+   1. Default behavior and layouting
+2. MVC and MVVM
+   1. Model
+      1. Defines the schema of the type of data to be shown on View
+      2. Store
+         1. THis is the state-management containser for the View and COntroller based on the Model
+            1. COntains initial state for the data
+            2. Proxy
+               1. Encapsulate all  external calls (AJAX) to define an init state
+   2. Controller
+      1. Behavior manager for View
+         1. USes Data from Store and apply to View
+   3. View
+      1. ExtJs COmponents to define User Interface
+      2. Pluins to provide HTML UI Object Model with its own Property and Eventing System  
+3. ExtJs CDN
+<link href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+4. if using ExtJs Generator app
+   1. npm install -g ext-gen
+5. To Create a project
+   1. ext-gen app <APP-NAME>
